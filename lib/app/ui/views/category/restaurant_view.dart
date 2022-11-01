@@ -79,10 +79,11 @@ class _RestaurantViewState extends State<RestaurantView> {
               DraggableScrollableSheet(
                 initialChildSize: 0.55,
                 minChildSize: 0.55,
-                maxChildSize: 1.0,
+                maxChildSize: 0.83,
                 builder:
                     (BuildContext context, ScrollController scrollController) {
                   return Container(
+                    clipBehavior: Clip.hardEdge,
                     decoration: const BoxDecoration(
                       borderRadius: BorderRadius.vertical(
                         top: Radius.circular(35.0),
@@ -200,12 +201,6 @@ class _RestaurantViewState extends State<RestaurantView> {
                                   vertical: 15.0,
                                   horizontal: 20.0,
                                 ),
-                                // decoration: const BoxDecoration(
-                                //   borderRadius: BorderRadius.all(
-                                //     Radius.circular(25.0),
-                                //   ),
-                                //   color: Color.fromRGBO(245, 244, 245, 1.0),
-                                // ),
                                 child: const Text(
                                   "Experemental",
                                   style: TextStyle(
@@ -219,12 +214,6 @@ class _RestaurantViewState extends State<RestaurantView> {
                                   vertical: 15.0,
                                   horizontal: 20.0,
                                 ),
-                                // decoration: const BoxDecoration(
-                                //   borderRadius: BorderRadius.all(
-                                //     Radius.circular(25.0),
-                                //   ),
-                                //   color: Color.fromRGBO(245, 244, 245, 1.0),
-                                // ),
                                 child: const Text(
                                   "Speicality",
                                   style: TextStyle(
@@ -262,12 +251,12 @@ class _RestaurantViewState extends State<RestaurantView> {
                                           "${restaurantController.foods[index].description}";
                                       foodSelected["urlImage"] =
                                           "${restaurantController.foods[index].urlImage}";
+                                      foodSelected["price"] =
+                                          "${restaurantController.foods[index].price}";
                                       return SizedBox(
-                                        height: MediaQuery.of(context)
-                                                .copyWith()
-                                                .size
-                                                .height *
-                                            0.75,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.71,
                                         width: double.infinity,
                                         child: Column(
                                           children: [
@@ -327,6 +316,9 @@ class _RestaurantViewState extends State<RestaurantView> {
                                                         child: Text(
                                                           foodSelected[
                                                               "description"]!,
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                          maxLines: 3,
                                                           style:
                                                               const TextStyle(
                                                             fontSize: 16.0,
@@ -441,6 +433,141 @@ class _RestaurantViewState extends State<RestaurantView> {
                                                                           "carbs"),
                                                                     ],
                                                                   ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      Container(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .symmetric(
+                                                          horizontal: 10.0,
+                                                        ),
+                                                        margin: const EdgeInsets
+                                                            .only(
+                                                          top: 15.0,
+                                                        ),
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            Container(
+                                                              width: 70.0,
+                                                              height: 70.0,
+                                                              alignment:
+                                                                  Alignment
+                                                                      .center,
+                                                              decoration:
+                                                                  const BoxDecoration(
+                                                                color: Color
+                                                                    .fromRGBO(
+                                                                        0,
+                                                                        0,
+                                                                        0,
+                                                                        0.05),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .all(
+                                                                  Radius
+                                                                      .circular(
+                                                                          35.0),
+                                                                ),
+                                                              ),
+                                                              child: const Icon(
+                                                                FluentIcons
+                                                                    .add_24_regular,
+                                                                size: 25.0,
+                                                                color: Colors
+                                                                    .black,
+                                                              ),
+                                                            ),
+                                                            Container(
+                                                              width: 70.0,
+                                                              height: 70.0,
+                                                              alignment:
+                                                                  Alignment
+                                                                      .center,
+                                                              decoration:
+                                                                  const BoxDecoration(
+                                                                color: Color
+                                                                    .fromRGBO(
+                                                                        0,
+                                                                        0,
+                                                                        0,
+                                                                        0.05),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .all(
+                                                                  Radius
+                                                                      .circular(
+                                                                          35.0),
+                                                                ),
+                                                              ),
+                                                              child: const Icon(
+                                                                FluentIcons
+                                                                    .subtract_24_regular,
+                                                                size: 25.0,
+                                                                color: Colors
+                                                                    .black,
+                                                              ),
+                                                            ),
+                                                            Container(
+                                                              width: 240.0,
+                                                              height: 70.0,
+                                                              alignment:
+                                                                  Alignment
+                                                                      .center,
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .symmetric(
+                                                                horizontal:
+                                                                    25.0,
+                                                              ),
+                                                              decoration:
+                                                                  const BoxDecoration(
+                                                                color: Color
+                                                                    .fromRGBO(
+                                                                        23,
+                                                                        23,
+                                                                        28,
+                                                                        1.0),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .all(
+                                                                  Radius
+                                                                      .circular(
+                                                                          35.0),
+                                                                ),
+                                                              ),
+                                                              child: Row(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .spaceBetween,
+                                                                children: [
+                                                                  const Text(
+                                                                    "Add to cart",
+                                                                    style:
+                                                                        TextStyle(
+                                                                      color: Colors
+                                                                          .white,
+                                                                      fontSize:
+                                                                          18.0,
+                                                                    ),
+                                                                  ),
+                                                                  Text(
+                                                                    foodSelected[
+                                                                        "price"]!,
+                                                                    style:
+                                                                        const TextStyle(
+                                                                      color: Colors
+                                                                          .white,
+                                                                      fontSize:
+                                                                          18.0,
+                                                                    ),
+                                                                  )
                                                                 ],
                                                               ),
                                                             ),

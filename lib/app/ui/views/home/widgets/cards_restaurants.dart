@@ -3,12 +3,21 @@ import 'package:get/get.dart';
 import 'package:reto_final/app/ui/views/category/restaurant_view.dart';
 import 'package:reto_final/app/ui/views/home/home_controller.dart';
 
-class CardsRestaurants extends StatelessWidget {
-  const CardsRestaurants({Key? key}) : super(key: key);
+class CardsRestaurants extends StatefulWidget {
+  const CardsRestaurants({
+    Key? key,
+    required this.pageController,
+  }) : super(key: key);
+
+  final PageController pageController;
 
   @override
+  _CardsRestaurantsState createState() => _CardsRestaurantsState();
+}
+
+class _CardsRestaurantsState extends State<CardsRestaurants> {
+  @override
   Widget build(BuildContext context) {
-    var controller = PageController(viewportFraction: 1.0);
     final homeController = HomeController();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -31,9 +40,10 @@ class CardsRestaurants extends StatelessWidget {
         SizedBox(
           height: 270.0,
           child: PageView.builder(
-            controller: controller,
+            controller: widget.pageController,
             scrollDirection: Axis.horizontal,
             itemCount: homeController.restaurants.length,
+            onPageChanged: (index) {},
             itemBuilder: (context, index) => Padding(
               padding: const EdgeInsets.all(6.0),
               child: GestureDetector(
